@@ -105,6 +105,18 @@ import UIKit
     case linkedBalls
 }
 
+/// Set `optionMultipleDateOutputFormat` with one of the following:
+///
+/// `English`: Displayed as "EEE', 'd' 'MMM' 'yyyy": for example, Tue, 17 Jul 2018
+///
+/// `Japanese`: "yyyy'年 'MMM' 'd'日 'EEE": for example, 2018年 7月 15日 日
+@objc public enum WWCalendarTimeSelectorMultipleDateOutputFormat: Int {
+    /// English format
+    case english
+    /// Japanese format
+    case japanese
+}
+
 /// Set `optionTimeStep` to customise the period of time which the users will be able to choose. The step will show the user the available minutes to select (with exception of `OneMinute` step, see *Note*).
 ///
 /// - Note:
@@ -316,6 +328,13 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
     /// - Note:
     /// Selection styles will only affect date selection. It is currently not possible to select multiple/range
     open var optionSelectionType: WWCalendarTimeSelectorSelection = .single
+    
+    /// Set `optionMultipleDateOutputFormat` with one of the following:
+    ///
+    /// `English`: Displayed as "EEE', 'd' 'MMM' 'yyyy": for example, Tue, 17 Jul 2018
+    ///
+    /// `Japanese`: "yyyy', 'MMM' 'd' 'EEE": for example, 2018年 7月 15日 日
+    open var optionMultipleDateOutputFormat: WWCalendarTimeSelectorMultipleDateOutputFormat = .english
     
     /// Set to default date when selector is presented.
     ///
@@ -1704,7 +1723,14 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
             let date = multipleDates[(indexPath as NSIndexPath).row]
             cell.textLabel?.font = date == multipleDatesLastAdded ? optionSelectorPanelFontMultipleSelectionHighlight : optionSelectorPanelFontMultipleSelection
             cell.textLabel?.textColor = date == multipleDatesLastAdded ? optionSelectorPanelFontColorMultipleSelectionHighlight : optionSelectorPanelFontColorMultipleSelection
-            cell.textLabel?.text = date.stringFromFormat("EEE', 'd' 'MMM' 'yyyy")
+            
+            // output date format
+            switch optionMultipleDateOutputFormat {
+            case .english:
+                cell.textLabel?.text = date.stringFromFormat("EEE', 'd' 'MMM' 'yyyy")
+            case .japanese:
+                cell.textLabel?.text = date.stringFromFormat("yyyy'年 'MMM' 'd'日 'EEE")
+            }
         }
         
         return cell

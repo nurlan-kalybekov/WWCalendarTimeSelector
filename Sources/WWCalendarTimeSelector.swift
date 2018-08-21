@@ -470,8 +470,8 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
     open var optionSelectorPanelFontColorYearHighlight = UIColor.white
     open var optionSelectorPanelFontColorTime = UIColor(white: 1, alpha: 0.5)
     open var optionSelectorPanelFontColorTimeHighlight = UIColor.white
-    open var optionSelectorPanelFontColorMultipleSelection = UIColor.white
-    open var optionSelectorPanelFontColorMultipleSelectionHighlight = UIColor.white
+    open var optionSelectorPanelFontColorMultipleSelection = UIColor(red: 35/255, green: 42/255, blue: 47/255, alpha: 1.0) //UIColor.white
+    open var optionSelectorPanelFontColorMultipleSelectionHighlight = UIColor(red: 35/255, green: 42/255, blue: 47/255, alpha: 1.0) //UIColor.white
     open var optionSelectorPanelBackgroundColor = UIColor.brown.withAlphaComponent(0.9)
     
     open var optionMainPanelBackgroundColor = UIColor.white
@@ -538,8 +538,8 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
             optionSelectorPanelFontColorYearHighlight = UIColor.white
             optionSelectorPanelFontColorTime = UIColor(white: 1, alpha: 0.5)
             optionSelectorPanelFontColorTimeHighlight = UIColor.white
-            optionSelectorPanelFontColorMultipleSelection = UIColor.white
-            optionSelectorPanelFontColorMultipleSelectionHighlight = UIColor.white
+            optionSelectorPanelFontColorMultipleSelection = UIColor(red: 35/255, green: 42/255, blue: 47/255, alpha: 1.0) // UIColor.white
+            optionSelectorPanelFontColorMultipleSelectionHighlight = UIColor(red: 35/255, green: 42/255, blue: 47/255, alpha: 1.0) //UIColor.white
             optionSelectorPanelBackgroundColor = tintColor.withAlphaComponent(0.9)
             
             optionMainPanelBackgroundColor = UIColor.white
@@ -753,12 +753,12 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
         NotificationCenter.default.addObserver(self, selector: #selector(WWCalendarTimeSelector.didRotateOrNot), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
-        backgroundDayView.backgroundColor = optionTopPanelBackgroundColor
+        backgroundDayView.backgroundColor = UIColor.white //optionTopPanelBackgroundColor
         backgroundSelView.backgroundColor = optionSelectorPanelBackgroundColor
         backgroundRangeView.backgroundColor = optionSelectorPanelBackgroundColor
         backgroundContentView.backgroundColor = optionMainPanelBackgroundColor
         backgroundButtonsView.backgroundColor = optionBottomPanelBackgroundColor
-        selMultipleDatesTable.backgroundColor = optionSelectorPanelBackgroundColor
+        selMultipleDatesTable.backgroundColor = UIColor(red: 241/255, green: 242/255, blue: 247/255, alpha: 1.0) //optionSelectorPanelBackgroundColor
         
         doneButton.backgroundColor = optionButtonBackgroundColorDone
         cancelButton.backgroundColor = optionButtonBackgroundColorCancel
@@ -771,7 +771,7 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
             cancelButton.isHidden = true
         }
         
-        dayLabel.textColor = optionTopPanelFontColor
+        dayLabel.textColor = UIColor.black //optionTopPanelFontColor
         dayLabel.font = optionTopPanelFont
         monthLabel.font = optionSelectorPanelFontMonth
         dateLabel.font = optionSelectorPanelFontDate

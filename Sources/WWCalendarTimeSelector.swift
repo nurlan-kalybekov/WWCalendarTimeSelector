@@ -746,7 +746,7 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
     ///     selector.delegate = self
     ///     presentViewController(selector, animated: true, completion: nil)
     ///
-    open static func instantiate() -> WWCalendarTimeSelector {
+    public static func instantiate() -> WWCalendarTimeSelector {
         let podBundle = Bundle(for: self.classForCoder())
         let bundleURL = podBundle.url(forResource: "WWCalendarTimeSelectorStoryboardBundle", withExtension: "bundle")
         var bundle: Bundle?
@@ -1997,11 +1997,11 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
                 var indexPathToReload: IndexPath? = nil
                 
                 if let d = multipleDatesLastAdded {
-                    let indexToReload = multipleDates.index(of: d)!
+                    let indexToReload = multipleDates.firstIndex(of: d)!
                     indexPathToReload = IndexPath(row: indexToReload, section: 0)
                 }
                 
-                if let indexToDelete = multipleDates.index(of: date) {
+                if let indexToDelete = multipleDates.firstIndex(of: date) {
                     // delete...
                     indexPath = IndexPath(row: indexToDelete, section: 0)
                     optionCurrentDates.remove(date)
@@ -2021,7 +2021,7 @@ open class WWCalendarTimeSelector: UIViewController, UITableViewDelegate, UITabl
                     var shouldScroll = false
                     
                     optionCurrentDates.insert(date)
-                    let indexToAdd = multipleDates.index(of: date)!
+                    let indexToAdd = multipleDates.firstIndex(of: date)!
                     indexPath = IndexPath(row: indexToAdd, section: 0)
                     
                     if indexPath.row < optionCurrentDates.count - 1 {
